@@ -4,3 +4,5 @@ const String appVersion = '1.0.0';
 
 const String splashscreenImage = 'assets/images/layout/splashscreen.png';
 const String landingImage = 'assets/images/layout/landing.jpg';
+const String logoImage = 'assets/images/layout/logo.png';
+const String loginImage = 'assets/images/layout/login.jpg';

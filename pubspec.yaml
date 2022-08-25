@@ -11,6 +11,9 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   get: ^4.6.5
+  validators: ^3.0.0
+  get_storage: ^2.0.3
+  url_launcher: ^6.1.5
 
 dev_dependencies:
   flutter_test:

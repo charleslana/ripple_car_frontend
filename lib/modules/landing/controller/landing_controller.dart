@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:ripple_car_frontend/dto/response_model.dart';
 import 'package:ripple_car_frontend/modules/landing/service/landing_service.dart';
+import 'package:ripple_car_frontend/routes/app_routes.dart';
 import 'package:ripple_car_frontend/utils/constants.dart';
 
 class LandingController extends GetxController {
@@ -27,6 +28,7 @@ class LandingController extends GetxController {
           return;
         }
         text.value = 'Validando conta...';
+        Get.offAllNamed<dynamic>(AppRoutes.login);
       },
       onError: (dynamic error) {
         if (error is Map<String, dynamic>) {
