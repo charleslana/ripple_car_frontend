@@ -7,7 +7,12 @@ class GaragePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('GaragePage'),
+        title: const Text(
+          'GaragePage',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
       ),
       body: const Center(
         child: Text('GaragePage'),

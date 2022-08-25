@@ -49,6 +49,12 @@ class ThemeColor {
       brightness: Brightness.light,
     );
 
-    return ThemeData.from(colorScheme: colorScheme);
+    final ThemeData theme = ThemeData(
+      fontFamily: 'HighSpeed',
+      colorScheme: colorScheme,
+      useMaterial3: true,
+    );
+
+    return theme;
   }
 }
