@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:ripple_car_frontend/app/dtos/response_model.dart';
 import 'package:ripple_car_frontend/app/modules/landing/services/landing_service.dart';
 import 'package:ripple_car_frontend/app/routes/app_routes.dart';
 import 'package:ripple_car_frontend/app/utils/constants.dart';
@@ -31,10 +30,6 @@ class LandingController extends GetxController {
         Get.offAllNamed<dynamic>(AppRoutes.login);
       },
       onError: (dynamic error) {
-        if (error is Map<String, dynamic>) {
-          final ResponseModel response = ResponseModel.fromMap(error);
-          text.value = response.message;
-        }
         text.value = error;
         isLoading.value = false;
       },

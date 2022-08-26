@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ripple_car_frontend/app/enums/toast_enum.dart';
 import 'package:ripple_car_frontend/app/modules/register/controllers/register_controller.dart';
 import 'package:ripple_car_frontend/app/modules/register/models/register_model.dart';
 import 'package:ripple_car_frontend/app/utils/constants.dart';
+import 'package:ripple_car_frontend/app/utils/functions.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -134,9 +136,9 @@ class RegisterPage extends StatelessWidget {
                               final validate = register.validate();
                               if (validate == null) {
                                 await controller.register(register);
-                              } else {
-                                print(validate);
+                                return;
                               }
+                              showToast(validate, ToastEnum.error);
                             },
                             child: const Text(
                               'Registrar',

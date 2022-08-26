@@ -4,6 +4,7 @@ import 'package:ripple_car_frontend/app/modules/login/controllers/login_controll
 import 'package:ripple_car_frontend/app/modules/login/models/login_credential_model.dart';
 import 'package:ripple_car_frontend/app/routes/app_routes.dart';
 import 'package:ripple_car_frontend/app/utils/constants.dart';
+import 'package:ripple_car_frontend/app/utils/functions.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -142,6 +143,16 @@ class LoginPage extends StatelessWidget {
                         onPressed: () => Get.toNamed<dynamic>(AppRoutes.garage),
                         child: const Text(
                           'Ir para Garagem',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 30),
+                      const OutlinedButton(
+                        onPressed: launchDiscord,
+                        child: Text(
+                          'Ir para Discord',
                           style: TextStyle(
                             color: Colors.white,
                           ),

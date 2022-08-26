@@ -38,6 +38,14 @@ class RegisterModel {
     }
     return null;
   }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'email': _email.value,
+      'password': _password.value,
+      'name': _name.value,
+    };
+  }
 }
 
 class Email {

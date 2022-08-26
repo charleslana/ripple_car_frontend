@@ -1,6 +1,10 @@
 import 'package:get/get.dart';
+import 'package:ripple_car_frontend/app/dtos/response_model.dart';
+import 'package:ripple_car_frontend/app/enums/toast_enum.dart';
 import 'package:ripple_car_frontend/app/modules/register/models/register_model.dart';
 import 'package:ripple_car_frontend/app/modules/register/services/register_service.dart';
+import 'package:ripple_car_frontend/app/routes/app_routes.dart';
+import 'package:ripple_car_frontend/app/utils/functions.dart';
 
 class RegisterController extends GetxController {
   RegisterController({
@@ -8,9 +12,26 @@ class RegisterController extends GetxController {
   });
 
   RegisterService registerService = RegisterService();
-  RxBool isLoading = false.obs;
   RxBool isObscuredPassword = true.obs;
   RxBool isObscuredConfirmPassword = true.obs;
 
-  Future<void> register(RegisterModel register) async {}
+  Future<void> register(RegisterModel register) async {
+    showLoading();
+    await registerService.register(register).then(
+      (value) {
+        Get.back<dynamic>();
+        showToast(value.message, ToastEnum.success);
+        Get.offAllNamed<dynamic>(AppRoutes.login);
+      },
+      onError: (dynamic error) {
+        Get.back<dynamic>();
+        if (error is Map<String, dynamic>) {
+          final ResponseModel response = ResponseModel.fromMap(error);
+          showToast(response.message, ToastEnum.error);
+          return;
+        }
+        showToast(error, ToastEnum.error);
+      },
+    );
+  }
 }
