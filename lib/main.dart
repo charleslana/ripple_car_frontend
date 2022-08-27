@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:ripple_car_frontend/app/i18n/i18n.dart';
 import 'package:ripple_car_frontend/app/routes/app_pages.dart';
 import 'package:ripple_car_frontend/app/routes/app_routes.dart';
+import 'package:ripple_car_frontend/app/services/language_service.dart';
 import 'package:ripple_car_frontend/app/themes/colors_theme.dart';
 
 void main() async {
@@ -21,6 +23,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeColor().themeData,
       initialRoute: AppRoutes.splashscreen,
       getPages: AppPages.pages,
+      fallbackLocale: const Locale('en', 'US'),
+      translationsKeys: I18n.translationsKeys,
+      locale: LanguageService.getLocale(),
     );
   }
 }

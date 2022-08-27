@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ripple_car_frontend/app/controllers/language_controller.dart';
 import 'package:ripple_car_frontend/app/enums/toast_enum.dart';
+import 'package:ripple_car_frontend/app/i18n/i18n.dart';
+import 'package:ripple_car_frontend/app/i18n/language_model.dart';
 import 'package:ripple_car_frontend/app/modules/login/controllers/login_controller.dart';
 import 'package:ripple_car_frontend/app/modules/login/models/login_credential_model.dart';
 import 'package:ripple_car_frontend/app/routes/app_routes.dart';
+import 'package:ripple_car_frontend/app/themes/app_text_theme.dart';
 import 'package:ripple_car_frontend/app/utils/constants.dart';
 import 'package:ripple_car_frontend/app/utils/functions.dart';
 
@@ -36,6 +40,7 @@ class LoginPage extends StatelessWidget {
           ),
           child: Scaffold(
             backgroundColor: Colors.transparent,
+            appBar: _appBarLanguageDropdown(),
             body: Center(
               child: SingleChildScrollView(
                 child: Padding(
@@ -106,9 +111,9 @@ class LoginPage extends StatelessWidget {
                                   }
                                   showToast(validate, ToastEnum.error);
                                 },
-                                child: const Text(
-                                  'Entrar',
-                                  style: TextStyle(
+                                child: Text(
+                                  'login.page.button.login'.tr,
+                                  style: const TextStyle(
                                     color: Colors.white,
                                   ),
                                 ),
@@ -164,6 +169,38 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
             ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  AppBar _appBarLanguageDropdown() {
+    final LanguageController languageController =
+        Get.find<LanguageController>();
+
+    return AppBar(
+      centerTitle: true,
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      title: Theme(
+        data: ThemeData.dark(),
+        child: DropdownButtonHideUnderline(
+          child: DropdownButton<LanguageModel>(
+            value: languageController.selectedLanguage.value,
+            items: I18n.languages
+                .map(
+                  (item) => DropdownMenuItem<LanguageModel>(
+                    value: item,
+                    child: Text(
+                      item.language,
+                      style: poppinsRegular().copyWith(color: Colors.white),
+                    ),
+                  ),
+                )
+                .toList(),
+            onChanged: (LanguageModel? languageModel) =>
+                languageController.changeLanguage(languageModel!),
           ),
         ),
       ),

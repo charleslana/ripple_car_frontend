@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:ripple_car_frontend/app/bindings/language_binding.dart';
 import 'package:ripple_car_frontend/app/guards/auth_guard.dart';
 import 'package:ripple_car_frontend/app/modules/garage/bindings/garage_binding.dart';
 import 'package:ripple_car_frontend/app/modules/garage/pages/garage_page.dart';
@@ -34,7 +35,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.login,
       page: () => const LoginPage(),
-      binding: LoginBinding(),
+      bindings: [
+        LoginBinding(),
+        LanguageBinding(),
+      ],
       transition: Transition.leftToRight,
     ),
     GetPage(

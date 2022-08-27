@@ -16,7 +16,7 @@ class LandingController extends GetxController {
   LandingService landingService = LandingService();
   LoginService loginService = LoginService();
 
-  RxString text = 'Validando versão...'.obs;
+  RxString text = 'landing.page.version'.tr.obs;
   RxBool isLoading = true.obs;
 
   @override

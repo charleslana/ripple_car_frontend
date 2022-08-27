@@ -3,6 +3,7 @@ import 'package:ripple_car_frontend/app/modules/login/models/auth_model.dart';
 import 'package:ripple_car_frontend/app/modules/login/models/login_credential_model.dart';
 import 'package:ripple_car_frontend/app/services/encrypt_service.dart';
 import 'package:ripple_car_frontend/app/services/get_storage_service.dart';
+import 'package:ripple_car_frontend/app/services/language_service.dart';
 import 'package:ripple_car_frontend/app/utils/constants.dart';
 
 class LoginService extends GetConnect {
@@ -11,13 +12,14 @@ class LoginService extends GetConnect {
 
   final GetStorageService _getStorageService = GetStorageService();
   final EncryptService _encryptService = EncryptService();
+  final LanguageService _languageService = LanguageService();
 
   @override
   void onInit() {
     httpClient
       ..baseUrl = apiBaseUrl
       ..addRequestModifier<dynamic>((dynamic request) {
-        request.headers['accept-language'] = 'pt-BR';
+        request.headers['accept-language'] = _languageService.getLocaleString();
         return request;
       });
     super.onInit();
