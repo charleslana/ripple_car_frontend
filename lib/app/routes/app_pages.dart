@@ -26,7 +26,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.landing,
       page: () => const LandingPage(),
-      binding: LandingBinding(),
+      bindings: [
+        LandingBinding(),
+        LoginBinding(),
+      ],
     ),
     GetPage(
       name: AppRoutes.login,

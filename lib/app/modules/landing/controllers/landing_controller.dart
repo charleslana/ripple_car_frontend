@@ -1,14 +1,21 @@
 import 'package:get/get.dart';
 import 'package:ripple_car_frontend/app/modules/landing/services/landing_service.dart';
+import 'package:ripple_car_frontend/app/modules/login/controllers/login_controller.dart';
+import 'package:ripple_car_frontend/app/modules/login/models/login_credential_model.dart';
+import 'package:ripple_car_frontend/app/modules/login/services/login_service.dart';
 import 'package:ripple_car_frontend/app/routes/app_routes.dart';
+import 'package:ripple_car_frontend/app/services/encrypt_service.dart';
 import 'package:ripple_car_frontend/app/utils/constants.dart';
 
 class LandingController extends GetxController {
   LandingController({
     required this.landingService,
+    required this.loginService,
   });
 
   LandingService landingService = LandingService();
+  LoginService loginService = LoginService();
+
   RxString text = 'Validando versão...'.obs;
   RxBool isLoading = true.obs;
 
@@ -20,16 +27,47 @@ class LandingController extends GetxController {
 
   Future<void> _fetchVersion() async {
     await landingService.getVersion().then(
-      (value) {
-        if (value != appVersion) {
+      (result) async {
+        if (result != appVersion) {
           isLoading.value = false;
           text.value = 'Há um nova versão disponível!';
           return;
         }
         text.value = 'Validando conta...';
-        Get.offAllNamed<dynamic>(AppRoutes.login);
+        await tryLogin();
       },
       onError: (dynamic error) {
+        text.value = error;
+        isLoading.value = false;
+      },
+    );
+  }
+
+  Future<void> tryLogin() async {
+    final dynamic getLoginStorage = loginService.readLogin();
+    if (getLoginStorage == null) {
+      await Get.offAllNamed<dynamic>(AppRoutes.login);
+      return;
+    }
+    final EncryptService encryptService = EncryptService();
+    final LoginCredentialModel login = LoginCredentialModel();
+    login
+      ..fromMap(getLoginStorage as Map<String, dynamic>)
+      ..setEmail(encryptService.decrypt(login.email.value))
+      ..setPassword(encryptService.decrypt(login.password.value));
+    await loginService.login(login).then(
+      (result) {
+        final LoginController controller = Get.find<LoginController>();
+        controller.isLogged.value = true;
+        loginService.saveAuth(result);
+        Get.offAllNamed<dynamic>(AppRoutes.home);
+      },
+      onError: (dynamic error) {
+        Get.back<dynamic>();
+        if (error is Map<String, dynamic>) {
+          Get.offAllNamed<dynamic>(AppRoutes.login);
+          return;
+        }
         text.value = error;
         isLoading.value = false;
       },

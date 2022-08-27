@@ -18,9 +18,9 @@ class RegisterController extends GetxController {
   Future<void> register(RegisterModel register) async {
     showLoading();
     await registerService.register(register).then(
-      (value) {
+      (result) {
         Get.back<dynamic>();
-        showToast(value.message, ToastEnum.success);
+        showToast(result.message, ToastEnum.success);
         Get.offAllNamed<dynamic>(AppRoutes.login);
       },
       onError: (dynamic error) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ripple_car_frontend/app/enums/toast_enum.dart';
 import 'package:ripple_car_frontend/app/modules/login/controllers/login_controller.dart';
 import 'package:ripple_car_frontend/app/modules/login/models/login_credential_model.dart';
 import 'package:ripple_car_frontend/app/routes/app_routes.dart';
@@ -101,9 +102,9 @@ class LoginPage extends StatelessWidget {
                                       credential.validate();
                                   if (validate == null) {
                                     await controller.login(credential);
-                                  } else {
-                                    print(validate);
+                                    return;
                                   }
+                                  showToast(validate, ToastEnum.error);
                                 },
                                 child: const Text(
                                   'Entrar',

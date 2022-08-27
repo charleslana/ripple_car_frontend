@@ -20,6 +20,18 @@ class LoginCredentialModel {
     }
     return null;
   }
+
+  void fromMap(Map<String, dynamic> map) {
+    setEmail(map['email'] as String);
+    setPassword(map['password'] as String);
+  }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'email': _email.value,
+      'password': _password.value,
+    };
+  }
 }
 
 class Email {

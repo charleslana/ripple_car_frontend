@@ -69,7 +69,7 @@ class RegisterPage extends StatelessWidget {
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: 'Nome',
-                              errorMaxLines: 6,
+                              errorMaxLines: 7,
                             ),
                           ),
                           const SizedBox(height: 10),
