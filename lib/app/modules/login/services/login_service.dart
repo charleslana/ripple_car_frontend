@@ -48,9 +48,9 @@ class LoginService extends GetConnect {
     return '';
   }
 
-  dynamic readAuth() => _getStorageService.read(_authKey);
+  Map<String, dynamic>? readAuth() => _getStorageService.read(_authKey);
 
-  dynamic readLogin() => _getStorageService.read(_loginKey);
+  Map<String, dynamic>? readLogin() => _getStorageService.read(_loginKey);
 
   void removeAuth() => _getStorageService.remove(_authKey);
 

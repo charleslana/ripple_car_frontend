@@ -44,7 +44,7 @@ class LandingController extends GetxController {
   }
 
   Future<void> tryLogin() async {
-    final dynamic getLoginStorage = loginService.readLogin();
+    final Map<String, dynamic>? getLoginStorage = loginService.readLogin();
     if (getLoginStorage == null) {
       await Get.offAllNamed<dynamic>(AppRoutes.login);
       return;
@@ -52,7 +52,7 @@ class LandingController extends GetxController {
     final EncryptService encryptService = EncryptService();
     final LoginCredentialModel login = LoginCredentialModel();
     login
-      ..fromMap(getLoginStorage as Map<String, dynamic>)
+      ..fromMap(getLoginStorage)
       ..setEmail(encryptService.decrypt(login.email.value))
       ..setPassword(encryptService.decrypt(login.password.value));
     await loginService.login(login).then(
