@@ -50,7 +50,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.home,
       page: () => const HomePage(),
-      binding: HomeBinding(),
+      bindings: [
+        HomeBinding(),
+        LoginBinding(),
+      ],
       transition: Transition.leftToRight,
       middlewares: [
         AuthGuard(),
