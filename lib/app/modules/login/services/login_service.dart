@@ -23,6 +23,8 @@ class LoginService extends GetConnect {
     super.onInit();
   }
 
+  AuthModel getAuth() => AuthModel.fromMap(_readAuth()!);
+
   Future<AuthModel> login(LoginCredentialModel credential) async {
     final formData = FormData({
       'email': credential.email.value,
@@ -39,17 +41,6 @@ class LoginService extends GetConnect {
         .copyWith(cookie: _getCookieFromHeader(response));
   }
 
-  String _getCookieFromHeader(Response<dynamic> response) {
-    final String? rawCookie = response.headers!['set-cookie'];
-    if (rawCookie != null) {
-      final int index = rawCookie.indexOf(';');
-      return (index == -1) ? rawCookie : rawCookie.substring(0, index);
-    }
-    return '';
-  }
-
-  Map<String, dynamic>? readAuth() => _getStorageService.read(_authKey);
-
   Map<String, dynamic>? readLogin() => _getStorageService.read(_loginKey);
 
   void removeAuth() => _getStorageService.remove(_authKey);
@@ -65,4 +56,15 @@ class LoginService extends GetConnect {
       ..setPassword(_encryptService.encrypt(credential.password.value));
     _getStorageService.save(_loginKey, credential.toMap());
   }
+
+  String _getCookieFromHeader(Response<dynamic> response) {
+    final String? rawCookie = response.headers!['set-cookie'];
+    if (rawCookie != null) {
+      final int index = rawCookie.indexOf(';');
+      return (index == -1) ? rawCookie : rawCookie.substring(0, index);
+    }
+    return '';
+  }
+
+  Map<String, dynamic>? _readAuth() => _getStorageService.read(_authKey);
 }

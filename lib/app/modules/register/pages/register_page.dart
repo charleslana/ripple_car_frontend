@@ -38,7 +38,7 @@ class RegisterPage extends StatelessWidget {
             body: Center(
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(10),
                   child: Card(
                     elevation: 0,
                     color: Colors.white.withOpacity(0.7),

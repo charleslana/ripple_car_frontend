@@ -16,6 +16,7 @@ class RegisterController extends GetxController {
   RxBool isObscuredConfirmPassword = true.obs;
 
   Future<void> register(RegisterModel register) async {
+    closeKeyboard();
     showLoading();
     await registerService.register(register).then(
       (result) {

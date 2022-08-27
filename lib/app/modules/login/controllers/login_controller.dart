@@ -16,6 +16,7 @@ class LoginController extends GetxController {
   RxBool isLogged = false.obs;
 
   Future<void> login(LoginCredentialModel credential) async {
+    closeKeyboard();
     showLoading();
     await loginService.login(credential).then(
       (result) {
