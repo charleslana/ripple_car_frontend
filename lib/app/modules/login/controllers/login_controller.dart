@@ -4,6 +4,7 @@ import 'package:ripple_car_frontend/app/enums/toast_enum.dart';
 import 'package:ripple_car_frontend/app/modules/login/models/login_credential_model.dart';
 import 'package:ripple_car_frontend/app/modules/login/services/login_service.dart';
 import 'package:ripple_car_frontend/app/routes/app_routes.dart';
+import 'package:ripple_car_frontend/app/services/auth_service.dart';
 import 'package:ripple_car_frontend/app/utils/functions.dart';
 
 class LoginController extends GetxController {
@@ -12,15 +13,16 @@ class LoginController extends GetxController {
   });
 
   LoginService loginService = LoginService();
+
   RxBool isObscured = true.obs;
-  RxBool isLogged = false.obs;
+  final AuthService authService = Get.find<AuthService>();
 
   Future<void> login(LoginCredentialModel credential) async {
     closeKeyboard();
     showLoading();
     await loginService.login(credential).then(
       (result) {
-        isLogged.value = true;
+        authService.isAuthenticated.value = true;
         loginService
           ..saveLogin(credential)
           ..saveAuth(result);
@@ -39,7 +41,7 @@ class LoginController extends GetxController {
   }
 
   void logout() {
-    isLogged.value = false;
+    authService.isAuthenticated.value = false;
     loginService
       ..removeLogin()
       ..removeAuth();

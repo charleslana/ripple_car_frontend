@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 import 'package:ripple_car_frontend/app/modules/landing/services/landing_service.dart';
-import 'package:ripple_car_frontend/app/modules/login/controllers/login_controller.dart';
 import 'package:ripple_car_frontend/app/modules/login/models/login_credential_model.dart';
 import 'package:ripple_car_frontend/app/modules/login/services/login_service.dart';
 import 'package:ripple_car_frontend/app/routes/app_routes.dart';
+import 'package:ripple_car_frontend/app/services/auth_service.dart';
 import 'package:ripple_car_frontend/app/services/encrypt_service.dart';
 import 'package:ripple_car_frontend/app/utils/constants.dart';
 
@@ -18,6 +18,7 @@ class LandingController extends GetxController {
 
   RxString text = 'landing.page.version'.tr.obs;
   RxBool isLoading = true.obs;
+  final AuthService authService = Get.find<AuthService>();
 
   @override
   void onInit() {
@@ -57,8 +58,7 @@ class LandingController extends GetxController {
       ..setPassword(encryptService.decrypt(login.password.value));
     await loginService.login(login).then(
       (result) {
-        final LoginController controller = Get.find<LoginController>();
-        controller.isLogged.value = true;
+        authService.isAuthenticated.value = true;
         loginService.saveAuth(result);
         Get.offAllNamed<dynamic>(AppRoutes.home);
       },

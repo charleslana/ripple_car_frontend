@@ -53,6 +53,9 @@ class ThemeColor {
       fontFamily: 'HighSpeed',
       colorScheme: colorScheme,
       useMaterial3: true,
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: Color(0xff2E2739),
+      ),
     );
 
     return theme;

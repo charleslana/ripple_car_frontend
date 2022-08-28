@@ -11,6 +11,7 @@ import 'package:ripple_car_frontend/app/modules/login/bindings/login_binding.dar
 import 'package:ripple_car_frontend/app/modules/login/pages/login_page.dart';
 import 'package:ripple_car_frontend/app/modules/register/bindings/register_binding.dart';
 import 'package:ripple_car_frontend/app/modules/register/pages/register_page.dart';
+import 'package:ripple_car_frontend/app/modules/settings/pages/settings_page.dart';
 import 'package:ripple_car_frontend/app/modules/splashscreen/bindings/splashscreen_binding.dart';
 import 'package:ripple_car_frontend/app/modules/splashscreen/pages/splashscreen_page.dart';
 import 'package:ripple_car_frontend/app/routes/app_routes.dart';
@@ -50,11 +51,20 @@ class AppPages {
     GetPage(
       name: AppRoutes.home,
       page: () => const HomePage(),
+      binding: HomeBinding(),
+      transition: Transition.leftToRight,
+      middlewares: [
+        AuthGuard(),
+      ],
+    ),
+    GetPage(
+      name: AppRoutes.settings,
+      page: () => const SettingsPage(),
       bindings: [
-        HomeBinding(),
+        LanguageBinding(),
         LoginBinding(),
       ],
-      transition: Transition.leftToRight,
+      transition: Transition.rightToLeft,
       middlewares: [
         AuthGuard(),
       ],

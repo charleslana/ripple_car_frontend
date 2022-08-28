@@ -14,6 +14,7 @@ dependencies:
   validators: ^3.0.0
   get_storage: ^2.0.3
   url_launcher: ^6.1.5
+  simple_animations: ^5.0.0+2
 
 dev_dependencies:
   flutter_test:
@@ -25,6 +26,7 @@ flutter:
 
   assets:
     - assets/images/layout/
+    - assets/images/icons/
 
   fonts:
     - family: Poppins

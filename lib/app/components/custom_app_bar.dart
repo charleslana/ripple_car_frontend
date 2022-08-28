@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ripple_car_frontend/app/routes/app_routes.dart';
+import 'package:ripple_car_frontend/app/utils/constants.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     Key? key,
     required this.title,
     this.isBack = true,
+    this.isHome = false,
   }) : super(key: key);
 
   final String title;
   final bool isBack;
+  final bool isHome;
 
   @override
   Size get preferredSize => const Size.fromHeight(56);
@@ -17,6 +21,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: false,
       leading: isBack
           ? IconButton(
               onPressed: Get.back<dynamic>,
@@ -26,13 +31,45 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             )
           : null,
-      title: Text(
-        title,
-        style: const TextStyle(
-          color: Colors.white,
+      title: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Text(
+          title,
+          style: const TextStyle(
+            color: Colors.white,
+          ),
         ),
       ),
-      centerTitle: true,
+      centerTitle: !isHome,
+      actions: [
+        if (isHome)
+          IconButton(
+            onPressed: () => Get.toNamed<dynamic>(AppRoutes.home),
+            icon: ColorFiltered(
+              colorFilter: const ColorFilter.mode(
+                Colors.white,
+                BlendMode.srcATop,
+              ),
+              child: Image.asset(
+                homeIcon,
+                height: 24,
+              ),
+            ),
+          ),
+        IconButton(
+          onPressed: () => Get.toNamed<dynamic>(AppRoutes.settings),
+          icon: ColorFiltered(
+            colorFilter: const ColorFilter.mode(
+              Colors.white,
+              BlendMode.srcATop,
+            ),
+            child: Image.asset(
+              settingsIcon,
+              height: 24,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
