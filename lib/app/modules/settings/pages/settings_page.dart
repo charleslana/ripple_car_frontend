@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ripple_car_frontend/app/components/custom_app_bar.dart';
+import 'package:ripple_car_frontend/app/components/loop_animation.dart';
 import 'package:ripple_car_frontend/app/controllers/language_controller.dart';
 import 'package:ripple_car_frontend/app/i18n/i18n.dart';
 import 'package:ripple_car_frontend/app/i18n/language_model.dart';
@@ -19,24 +20,29 @@ class SettingsPage extends StatelessWidget {
         title: 'Definições',
         isHome: true,
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            children: [
-              const Text('Idiomas'),
-              const SizedBox(height: 20),
-              Column(
-                children: _createRadioListLanguages(),
+      body: Stack(
+        children: [
+          const LoopAnimation(),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  const Text('Idiomas'),
+                  const SizedBox(height: 20),
+                  Column(
+                    children: _createRadioListLanguages(),
+                  ),
+                  const SizedBox(height: 20),
+                  OutlinedButton(
+                    onPressed: loginController.logout,
+                    child: const Text('Logout'),
+                  ),
+                ],
               ),
-              const SizedBox(height: 20),
-              OutlinedButton(
-                onPressed: loginController.logout,
-                child: const Text('Logout'),
-              ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
@@ -53,11 +59,11 @@ class SettingsPage extends StatelessWidget {
           groupValue: languageController.selectedLanguage.value,
           title: Text(
             element.language,
-            style: poppinsRegular(),
+            style: poppinsRegular().copyWith(fontWeight: FontWeight.bold),
           ),
           subtitle: Text(
             element.language,
-            style: poppinsRegular(),
+            style: poppinsRegular().copyWith(fontWeight: FontWeight.bold),
           ),
           onChanged: (LanguageModel? languageModel) =>
               languageController.changeLanguage(languageModel!),
