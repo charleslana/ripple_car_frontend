@@ -15,34 +15,36 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final LoginController loginController = Get.find<LoginController>();
 
-    return Scaffold(
-      appBar: const CustomAppBar(
-        title: 'Definições',
-        isHome: true,
-      ),
-      body: Stack(
-        children: [
-          const LoopAnimation(),
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  const Text('Idiomas'),
-                  const SizedBox(height: 20),
-                  Column(
-                    children: _createRadioListLanguages(),
-                  ),
-                  const SizedBox(height: 20),
-                  OutlinedButton(
-                    onPressed: loginController.logout,
-                    child: const Text('Logout'),
-                  ),
-                ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: const CustomAppBar(
+          title: 'Definições',
+          isHome: true,
+        ),
+        body: Stack(
+          children: [
+            const LoopAnimation(),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    const Text('Idiomas'),
+                    const SizedBox(height: 20),
+                    Column(
+                      children: _createRadioListLanguages(),
+                    ),
+                    const SizedBox(height: 20),
+                    OutlinedButton(
+                      onPressed: loginController.logout,
+                      child: const Text('Logout'),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

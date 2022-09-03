@@ -44,7 +44,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         if (isHome)
           IconButton(
-            onPressed: () => Get.toNamed<dynamic>(AppRoutes.home),
+            onPressed: () => Get.offAllNamed<dynamic>(AppRoutes.home),
             icon: ColorFiltered(
               colorFilter: const ColorFilter.mode(
                 Colors.white,

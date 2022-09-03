@@ -8,4 +8,5 @@ class AppRoutes {
   static const home = '/home';
   static const settings = '/settings';
   static const garage = '/garage';
+  static const garageDetails = '/garage/details';
 }

@@ -3,6 +3,8 @@ import 'package:ripple_car_frontend/app/bindings/language_binding.dart';
 import 'package:ripple_car_frontend/app/guards/auth_guard.dart';
 import 'package:ripple_car_frontend/app/modules/garage/bindings/garage_binding.dart';
 import 'package:ripple_car_frontend/app/modules/garage/pages/garage_page.dart';
+import 'package:ripple_car_frontend/app/modules/garage_details/bindings/garage_details_binding.dart';
+import 'package:ripple_car_frontend/app/modules/garage_details/pages/garage_details_page.dart';
 import 'package:ripple_car_frontend/app/modules/home/bindings/home_binding.dart';
 import 'package:ripple_car_frontend/app/modules/home/pages/home_page.dart';
 import 'package:ripple_car_frontend/app/modules/landing/bindings/landing_binding.dart';
@@ -74,6 +76,15 @@ class AppPages {
       page: () => const GaragePage(),
       binding: GarageBinding(),
       transition: Transition.downToUp,
+      middlewares: [
+        AuthGuard(),
+      ],
+    ),
+    GetPage(
+      name: AppRoutes.garageDetails,
+      page: () => const GarageDetailsPage(),
+      binding: GarageDetailsBinding(),
+      transition: Transition.upToDown,
       middlewares: [
         AuthGuard(),
       ],
