@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:ripple_car_frontend/app/models/pageable_content_model.dart';
 import 'package:ripple_car_frontend/app/modules/login/services/login_service.dart';
 import 'package:ripple_car_frontend/app/services/language_service.dart';
 import 'package:ripple_car_frontend/app/utils/constants.dart';
@@ -19,5 +20,16 @@ class GarageService extends GetConnect {
         return request;
       });
     super.onInit();
+  }
+
+  Future<PageableContentModel> getAllCars() async {
+    final response = await get<dynamic>('/user/car');
+    if (response.status.hasError) {
+      if (response.bodyString == null) {
+        return Future.error('connection error');
+      }
+      return Future.error(response.body);
+    }
+    return PageableContentModel.fromMap(response.body);
   }
 }

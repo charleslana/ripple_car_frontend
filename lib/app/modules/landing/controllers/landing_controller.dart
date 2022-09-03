@@ -18,6 +18,7 @@ class LandingController extends GetxController {
 
   RxString text = 'landing.page.version'.tr.obs;
   RxBool isLoading = true.obs;
+  RxBool isConnectionFailed = false.obs;
   final AuthService authService = Get.find<AuthService>();
 
   @override
@@ -40,8 +41,16 @@ class LandingController extends GetxController {
       onError: (dynamic error) {
         text.value = error;
         isLoading.value = false;
+        isConnectionFailed.value = true;
       },
     );
+  }
+
+  Future<void> tryAgain() async {
+    text.value = 'landing.page.version'.tr;
+    isLoading.value = true;
+    isConnectionFailed.value = false;
+    await _fetchVersion();
   }
 
   Future<void> tryLogin() async {

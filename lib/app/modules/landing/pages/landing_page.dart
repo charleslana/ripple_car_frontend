@@ -39,28 +39,44 @@ class LandingPage extends StatelessWidget {
                 children: [
                   Align(
                     child: Obx(
-                      () => SizedBox(
-                        width: double.infinity,
-                        height: 100,
-                        child: Card(
-                          elevation: 0,
-                          color: ThemeColor.primaryDarkGrey.withOpacity(0.3),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              if (controller.isLoading.value) ...[
-                                const LinearProgressIndicator(),
-                                const SizedBox(height: 10),
-                              ],
-                              Text(
-                                controller.text.value,
-                                textAlign: TextAlign.center,
-                                style: poppinsRegular()
-                                    .copyWith(color: Colors.white),
+                      () => Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: double.infinity,
+                            height: 100,
+                            child: Card(
+                              elevation: 0,
+                              color:
+                                  ThemeColor.primaryDarkGrey.withOpacity(0.3),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  if (controller.isLoading.value) ...[
+                                    const LinearProgressIndicator(),
+                                    const SizedBox(height: 10),
+                                  ],
+                                  Text(
+                                    controller.text.value,
+                                    textAlign: TextAlign.center,
+                                    style: poppinsRegular()
+                                        .copyWith(color: Colors.white),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
-                        ),
+                          if (controller.isConnectionFailed.value) ...[
+                            const SizedBox(height: 10),
+                            ElevatedButton(
+                              onPressed: controller.tryAgain,
+                              child: const Text(
+                                'Tentar novamente',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ],
+                        ],
                       ),
                     ),
                   ),
