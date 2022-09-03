@@ -68,8 +68,10 @@ class HomePage extends GetView<HomeController> {
                   controller.obx(
                     (state) {
                       final home = state as HomeModel;
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      return Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        spacing: 20,
+                        runSpacing: 20,
                         children: [
                           Column(
                             children: [
@@ -118,6 +120,7 @@ class HomePage extends GetView<HomeController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 FloatingActionButton(
+                  tooltip: 'Garagem',
                   heroTag: null,
                   onPressed: () {},
                   child: ColorFiltered(
