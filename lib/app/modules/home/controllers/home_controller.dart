@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:ripple_car_frontend/app/dtos/response_model.dart';
+import 'package:ripple_car_frontend/app/models/response_model.dart';
 import 'package:ripple_car_frontend/app/modules/home/models/home_model.dart';
 import 'package:ripple_car_frontend/app/modules/home/services/home_service.dart';
 
