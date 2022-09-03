@@ -4,6 +4,7 @@ import 'package:ripple_car_frontend/app/components/custom_app_bar.dart';
 import 'package:ripple_car_frontend/app/components/loop_animation.dart';
 import 'package:ripple_car_frontend/app/modules/home/controllers/home_controller.dart';
 import 'package:ripple_car_frontend/app/modules/home/models/home_model.dart';
+import 'package:ripple_car_frontend/app/routes/app_routes.dart';
 import 'package:ripple_car_frontend/app/utils/constants.dart';
 
 class HomePage extends GetView<HomeController> {
@@ -122,7 +123,7 @@ class HomePage extends GetView<HomeController> {
                 FloatingActionButton(
                   tooltip: 'Garagem',
                   heroTag: null,
-                  onPressed: () {},
+                  onPressed: () => Get.toNamed<dynamic>(AppRoutes.garage),
                   child: ColorFiltered(
                     colorFilter: const ColorFilter.mode(
                       Colors.white,

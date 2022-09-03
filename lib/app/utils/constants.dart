@@ -17,3 +17,7 @@ const String settingsIcon = 'assets/images/icons/settings.png';
 const String homeIcon = 'assets/images/icons/home.png';
 const String newsIcon = 'assets/images/icons/news.png';
 const String giftIcon = 'assets/images/icons/gift.png';
+
+String getCarImage(String image) {
+  return 'assets/images/cars/$image';
+}

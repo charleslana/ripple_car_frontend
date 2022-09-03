@@ -73,7 +73,7 @@ class AppPages {
       name: AppRoutes.garage,
       page: () => const GaragePage(),
       binding: GarageBinding(),
-      transition: Transition.rightToLeft,
+      transition: Transition.downToUp,
       middlewares: [
         AuthGuard(),
       ],
