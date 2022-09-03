@@ -33,7 +33,10 @@ class GaragePage extends GetView<GarageController> {
                       (state) {
                         final garage = state as PageableContentModel;
                         if (garage.content.isEmpty) {
-                          return const Text('Nenhum carro encontrado');
+                          return const Text(
+                            'Nenhum carro encontrado',
+                            textAlign: TextAlign.center,
+                          );
                         }
 
                         return Expanded(
