@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:ripple_car_frontend/app/components/custom_app_bar.dart';
 import 'package:ripple_car_frontend/app/components/loop_animation.dart';
 import 'package:ripple_car_frontend/app/models/pageable_content_model.dart';
@@ -40,24 +41,24 @@ class GaragePage extends GetView<GarageController> {
                         }
 
                         return Expanded(
-                          child: GridView.builder(
-                            physics: const BouncingScrollPhysics(),
-                            itemCount: garage.content.length,
+                          child: PagedGridView<int, GarageModel>(
+                            showNewPageProgressIndicatorAsGridChild: false,
+                            showNewPageErrorIndicatorAsGridChild: false,
+                            showNoMoreItemsIndicatorAsGridChild: false,
+                            pagingController: controller.pagingController,
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              mainAxisSpacing: 20,
-                              crossAxisSpacing: 20,
                               childAspectRatio: 0.65,
+                              crossAxisSpacing: 20,
+                              mainAxisSpacing: 20,
+                              crossAxisCount: 2,
                             ),
-                            itemBuilder: (BuildContext context, int index) {
-                              final content =
-                                  GarageModel.fromMap(garage.content[index]);
-
-                              return InkWell(
+                            builderDelegate:
+                                PagedChildBuilderDelegate<GarageModel>(
+                              itemBuilder: (context, item, index) => InkWell(
                                 onTap: () => Get.toNamed<dynamic>(
                                   AppRoutes.garageDetails,
-                                  arguments: content.id,
+                                  arguments: item.id,
                                 ),
                                 customBorder: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
@@ -71,7 +72,7 @@ class GaragePage extends GetView<GarageController> {
                                         decoration: BoxDecoration(
                                           image: DecorationImage(
                                             image: AssetImage(
-                                                getCarImage(content.car.image)),
+                                                getCarImage(item.car.image)),
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -95,7 +96,7 @@ class GaragePage extends GetView<GarageController> {
                                                 FittedBox(
                                                   fit: BoxFit.scaleDown,
                                                   child: Text(
-                                                    content.car.name,
+                                                    item.car.name,
                                                     style: dosisRegular()
                                                         .copyWith(
                                                             color:
@@ -106,7 +107,7 @@ class GaragePage extends GetView<GarageController> {
                                                 FittedBox(
                                                   fit: BoxFit.scaleDown,
                                                   child: Text(
-                                                    'Nível ${content.level}',
+                                                    'Nível ${item.level}',
                                                     style: dosisRegular()
                                                         .copyWith(
                                                             color:
@@ -121,8 +122,8 @@ class GaragePage extends GetView<GarageController> {
                                     ),
                                   ),
                                 ),
-                              );
-                            },
+                              ),
+                            ),
                           ),
                         );
                       },

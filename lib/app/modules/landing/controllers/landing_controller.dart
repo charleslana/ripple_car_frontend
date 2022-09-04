@@ -60,12 +60,12 @@ class LandingController extends GetxController {
       return;
     }
     final EncryptService encryptService = EncryptService();
-    final LoginCredentialModel login = LoginCredentialModel();
-    login
+    final LoginCredentialModel credential = LoginCredentialModel();
+    credential
       ..fromMap(getLoginStorage)
-      ..setEmail(encryptService.decrypt(login.email.value))
-      ..setPassword(encryptService.decrypt(login.password.value));
-    await loginService.login(login).then(
+      ..setEmail(encryptService.decrypt(credential.email.value))
+      ..setPassword(encryptService.decrypt(credential.password.value));
+    await loginService.login(credential).then(
       (result) {
         authService.isAuthenticated.value = true;
         loginService.saveAuth(result);

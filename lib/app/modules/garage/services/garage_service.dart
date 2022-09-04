@@ -1,29 +1,9 @@
-import 'package:get/get.dart';
 import 'package:ripple_car_frontend/app/models/pageable_content_model.dart';
-import 'package:ripple_car_frontend/app/modules/login/services/login_service.dart';
-import 'package:ripple_car_frontend/app/services/language_service.dart';
-import 'package:ripple_car_frontend/app/utils/constants.dart';
+import 'package:ripple_car_frontend/app/services/request_service.dart';
 
-class GarageService extends GetConnect {
-  final LoginService _loginService = LoginService();
-  final LanguageService _languageService = LanguageService();
-
-  @override
-  void onInit() {
-    httpClient
-      ..baseUrl = apiBaseUrl
-      ..addRequestModifier<dynamic>((dynamic request) {
-        request.headers['accept-language'] = _languageService.getLocaleString();
-        request.headers['Authorization'] =
-            'Bearer ${_loginService.getAuth().accessToken}';
-        request.headers['cookie'] = _loginService.getAuth().cookie;
-        return request;
-      });
-    super.onInit();
-  }
-
-  Future<PageableContentModel> getAllCars() async {
-    final response = await get<dynamic>('/user/car');
+class GarageService extends RequestService {
+  Future<PageableContentModel> getAllCars([int page = 0, int size = 10]) async {
+    final response = await get<dynamic>('/user/car?page=$page&size=$size');
     if (response.status.hasError) {
       if (response.bodyString == null) {
         return Future.error('connection error');
