@@ -73,3 +73,17 @@ void showToast(String message, ToastEnum toast) {
     duration: const Duration(seconds: 4),
   );
 }
+
+String isBroken({required bool broken}) {
+  if (broken) {
+    return 'Quebrado';
+  }
+  return 'Funcionando';
+}
+
+String isBusted({required bool busted}) {
+  if (busted) {
+    return 'Preso';
+  }
+  return 'Livre';
+}

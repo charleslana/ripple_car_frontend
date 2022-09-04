@@ -37,3 +37,7 @@ flutter:
     - family: HighSpeed
       fonts:
         - asset: assets/fonts/HighSpeed-Regular.otf
+
+    - family: Dosis
+      fonts:
+        - asset: assets/fonts/Dosis-Regular.ttf       

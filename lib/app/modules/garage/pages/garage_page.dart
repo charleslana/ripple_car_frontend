@@ -96,7 +96,7 @@ class GaragePage extends GetView<GarageController> {
                                                   fit: BoxFit.scaleDown,
                                                   child: Text(
                                                     content.car.name,
-                                                    style: poppinsRegular()
+                                                    style: dosisRegular()
                                                         .copyWith(
                                                             color:
                                                                 Colors.white),
@@ -107,7 +107,7 @@ class GaragePage extends GetView<GarageController> {
                                                   fit: BoxFit.scaleDown,
                                                   child: Text(
                                                     'Nível ${content.level}',
-                                                    style: poppinsRegular()
+                                                    style: dosisRegular()
                                                         .copyWith(
                                                             color:
                                                                 Colors.white),

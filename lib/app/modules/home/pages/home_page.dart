@@ -22,171 +22,204 @@ class HomePage extends GetView<HomeController> {
           const LoopAnimation(),
           Padding(
             padding: const EdgeInsets.all(10),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: FloatingActionButton(
-                heroTag: null,
-                onPressed: () {},
-                child: ColorFiltered(
-                  colorFilter: const ColorFilter.mode(
-                    Colors.white,
-                    BlendMode.srcATop,
-                  ),
-                  child: Image.asset(
-                    newsIcon,
-                    height: 24,
+            child: CustomScrollView(
+              slivers: [
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            FloatingActionButton(
+                              heroTag: null,
+                              onPressed: () {},
+                              child: ColorFiltered(
+                                colorFilter: const ColorFilter.mode(
+                                  Colors.white,
+                                  BlendMode.srcATop,
+                                ),
+                                child: Image.asset(
+                                  newsIcon,
+                                  height: 24,
+                                ),
+                              ),
+                            ),
+                            FloatingActionButton(
+                              heroTag: null,
+                              onPressed: () {},
+                              child: ColorFiltered(
+                                colorFilter: const ColorFilter.mode(
+                                  Colors.white,
+                                  BlendMode.srcATop,
+                                ),
+                                child: Image.asset(
+                                  giftIcon,
+                                  height: 24,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              controller.obx(
+                                (state) {
+                                  final home = state as HomeModel;
+                                  return Wrap(
+                                    crossAxisAlignment:
+                                        WrapCrossAlignment.center,
+                                    spacing: 20,
+                                    runSpacing: 20,
+                                    children: [
+                                      Column(
+                                        children: [
+                                          const Text('ID'),
+                                          Text(home.id.toString()),
+                                        ],
+                                      ),
+                                      Column(
+                                        children: [
+                                          FittedBox(
+                                            fit: BoxFit.scaleDown,
+                                            child: Text(
+                                              home.name,
+                                              style:
+                                                  const TextStyle(fontSize: 30),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  );
+                                },
+                                onEmpty: const Center(
+                                  child: Text('empty'),
+                                ),
+                                onError: (error) => Center(
+                                  child: Text(error.toString()),
+                                ),
+                                onLoading: const Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const Expanded(
+                        flex: 3,
+                        child: Center(
+                          child: Text('Modos'),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 3,
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                FloatingActionButton(
+                                  tooltip: 'Menu',
+                                  heroTag: null,
+                                  onPressed: () =>
+                                      Get.toNamed<dynamic>(AppRoutes.garage),
+                                  child: IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(
+                                      Icons.menu,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 20),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                FloatingActionButton(
+                                  tooltip: 'Garagem',
+                                  heroTag: null,
+                                  onPressed: () =>
+                                      Get.toNamed<dynamic>(AppRoutes.garage),
+                                  child: ColorFiltered(
+                                    colorFilter: const ColorFilter.mode(
+                                      Colors.white,
+                                      BlendMode.srcATop,
+                                    ),
+                                    child: Image.asset(
+                                      garageIcon,
+                                      height: 24,
+                                    ),
+                                  ),
+                                ),
+                                FloatingActionButton(
+                                  heroTag: null,
+                                  onPressed: () {},
+                                  child: ColorFiltered(
+                                    colorFilter: const ColorFilter.mode(
+                                      Colors.white,
+                                      BlendMode.srcATop,
+                                    ),
+                                    child: Image.asset(
+                                      carPiecesIcon,
+                                      height: 24,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 20),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                FloatingActionButton(
+                                  heroTag: null,
+                                  onPressed: () {},
+                                  child: ColorFiltered(
+                                    colorFilter: const ColorFilter.mode(
+                                      Colors.white,
+                                      BlendMode.srcATop,
+                                    ),
+                                    child: Image.asset(
+                                      carShopIcon,
+                                      height: 24,
+                                    ),
+                                  ),
+                                ),
+                                FloatingActionButton(
+                                  heroTag: null,
+                                  onPressed: () {},
+                                  child: ColorFiltered(
+                                    colorFilter: const ColorFilter.mode(
+                                      Colors.white,
+                                      BlendMode.srcATop,
+                                    ),
+                                    child: Image.asset(
+                                      rankingIcon,
+                                      height: 24,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Align(
-              alignment: Alignment.topRight,
-              child: FloatingActionButton(
-                heroTag: null,
-                onPressed: () {},
-                child: ColorFiltered(
-                  colorFilter: const ColorFilter.mode(
-                    Colors.white,
-                    BlendMode.srcATop,
-                  ),
-                  child: Image.asset(
-                    giftIcon,
-                    height: 24,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  controller.obx(
-                    (state) {
-                      final home = state as HomeModel;
-                      return Wrap(
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        spacing: 20,
-                        runSpacing: 20,
-                        children: [
-                          Column(
-                            children: [
-                              const Text('ID'),
-                              Text(home.id.toString()),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              const Text('E-mail'),
-                              Text(home.email),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              const Text('Nome'),
-                              Text(home.name),
-                            ],
-                          ),
-                        ],
-                      );
-                    },
-                    onEmpty: const Center(
-                      child: Text('empty'),
-                    ),
-                    onError: (error) => Center(
-                      child: Text(error.toString()),
-                    ),
-                    onLoading: const Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  ),
-                ],
-              ),
+              ],
             ),
           ),
         ],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                FloatingActionButton(
-                  tooltip: 'Garagem',
-                  heroTag: null,
-                  onPressed: () => Get.toNamed<dynamic>(AppRoutes.garage),
-                  child: ColorFiltered(
-                    colorFilter: const ColorFilter.mode(
-                      Colors.white,
-                      BlendMode.srcATop,
-                    ),
-                    child: Image.asset(
-                      garageIcon,
-                      height: 24,
-                    ),
-                  ),
-                ),
-                FloatingActionButton(
-                  heroTag: null,
-                  onPressed: () {},
-                  child: ColorFiltered(
-                    colorFilter: const ColorFilter.mode(
-                      Colors.white,
-                      BlendMode.srcATop,
-                    ),
-                    child: Image.asset(
-                      carPiecesIcon,
-                      height: 24,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                FloatingActionButton(
-                  heroTag: null,
-                  onPressed: () {},
-                  child: ColorFiltered(
-                    colorFilter: const ColorFilter.mode(
-                      Colors.white,
-                      BlendMode.srcATop,
-                    ),
-                    child: Image.asset(
-                      carShopIcon,
-                      height: 24,
-                    ),
-                  ),
-                ),
-                FloatingActionButton(
-                  heroTag: null,
-                  onPressed: () {},
-                  child: ColorFiltered(
-                    colorFilter: const ColorFilter.mode(
-                      Colors.white,
-                      BlendMode.srcATop,
-                    ),
-                    child: Image.asset(
-                      rankingIcon,
-                      height: 24,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
       ),
     );
   }
