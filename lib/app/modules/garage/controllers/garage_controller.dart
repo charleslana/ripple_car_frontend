@@ -26,12 +26,6 @@ class GarageController extends GetxController
     super.onInit();
   }
 
-  @override
-  void onClose() {
-    pagingController.dispose();
-    super.dispose();
-  }
-
   Future<void> _fetchAllCars([int page = 0]) async {
     await garageService.getAllCars(page, _pageSize).then((result) {
       _result = result;

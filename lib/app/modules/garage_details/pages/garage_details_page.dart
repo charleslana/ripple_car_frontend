@@ -93,7 +93,8 @@ class GarageDetailsPage extends GetView<GarageDetailsController> {
                                         FloatingActionButton(
                                           tooltip: 'Status',
                                           heroTag: null,
-                                          onPressed: () {},
+                                          onPressed: () => _showStatusDialog(
+                                              context, garageDetails),
                                           child: ColorFiltered(
                                             colorFilter: const ColorFilter.mode(
                                               Colors.white,
@@ -219,4 +220,102 @@ class GarageDetailsPage extends GetView<GarageDetailsController> {
       ),
     );
   }
+
+  void _showStatusDialog(BuildContext context, GarageModel garageDetails) {
+    showDialog<dynamic>(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text(
+          'Status',
+          textAlign: TextAlign.center,
+        ),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(20),
+          ),
+        ),
+        backgroundColor: Colors.white,
+        insetPadding: const EdgeInsets.all(10),
+        scrollable: true,
+        content: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _showStatus(
+              'Aceleração',
+              garageDetails.car.acceleration.toString(),
+            ),
+            const Divider(),
+            _showStatus(
+              'Velocidade máxima',
+              garageDetails.car.topSpeed.toString(),
+            ),
+            const Divider(),
+            _showStatus(
+              'Controle',
+              garageDetails.car.control.toString(),
+            ),
+            const Divider(),
+            _showStatus(
+              'Peso',
+              garageDetails.car.weight.toString(),
+            ),
+            const Divider(),
+            _showStatus(
+              'Dureza',
+              garageDetails.car.toughness.toString(),
+            ),
+            const Divider(),
+            _showStatus(
+              'Potência',
+              garageDetails.car.potency.toString(),
+            ),
+            const Divider(),
+            _showStatus(
+              'Nitro',
+              garageDetails.car.nitro.toString(),
+            ),
+            const Divider(),
+            _showStatus(
+              'Raridade',
+              garageDetails.car.rarity,
+            ),
+            const Divider(),
+            _showStatus(
+              'Classe',
+              garageDetails.car.carClass,
+            ),
+          ],
+        ),
+        actionsAlignment: MainAxisAlignment.center,
+        actions: [
+          ElevatedButton(
+            onPressed: Get.back<dynamic>,
+            child: const Text(
+              'Fechar',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _showStatus(String text, String value) => Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            flex: 2,
+            child: Text(
+              text,
+              textAlign: TextAlign.start,
+            ),
+          ),
+          Expanded(
+            child: Text(
+              value,
+              textAlign: TextAlign.end,
+            ),
+          ),
+        ],
+      );
 }

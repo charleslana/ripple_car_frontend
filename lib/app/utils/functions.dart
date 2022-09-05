@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:ripple_car_frontend/app/enums/toast_enum.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -86,4 +87,52 @@ String isBusted({required bool busted}) {
     return 'Preso';
   }
   return 'Livre';
+}
+
+String numberAbbreviation(dynamic myNumber) {
+  final String stringNumber = myNumber.toString();
+  final double doubleNumber = double.tryParse(stringNumber) ?? 0;
+  final NumberFormat numberFormat = NumberFormat.compact();
+  return numberFormat.format(doubleNumber);
+}
+
+List<Color> showColorsRarity(String rarity) {
+  switch (rarity) {
+    case 'COMMON':
+      return [
+        Colors.green,
+        Colors.greenAccent,
+        Colors.green.shade300,
+      ];
+    case 'RARE':
+      return [
+        Colors.blue,
+        Colors.blueAccent,
+        Colors.blue.shade300,
+      ];
+    case 'EPIC':
+      return [
+        Colors.purple,
+        Colors.deepPurple,
+        Colors.purple.shade300,
+      ];
+    case 'LEGENDARY':
+      return [
+        Colors.yellow,
+        Colors.orangeAccent,
+        Colors.yellow.shade300,
+      ];
+    case 'MYTHICAL':
+      return [
+        Colors.red,
+        Colors.deepOrange,
+        Colors.red.shade300,
+      ];
+    default:
+      return [
+        Colors.black,
+        Colors.black,
+        Colors.black,
+      ];
+  }
 }

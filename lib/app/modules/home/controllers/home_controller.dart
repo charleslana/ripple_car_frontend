@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ripple_car_frontend/app/models/response_model.dart';
 import 'package:ripple_car_frontend/app/modules/home/models/home_model.dart';
@@ -9,6 +10,8 @@ class HomeController extends GetxController with StateMixin<HomeModel> {
   });
 
   HomeService homeService = HomeService();
+
+  final GlobalKey<ScaffoldState> key = GlobalKey();
 
   @override
   void onInit() {

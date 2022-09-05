@@ -9,6 +9,7 @@ import 'package:ripple_car_frontend/app/modules/garage/models/garage_model.dart'
 import 'package:ripple_car_frontend/app/routes/app_routes.dart';
 import 'package:ripple_car_frontend/app/themes/app_text_theme.dart';
 import 'package:ripple_car_frontend/app/utils/constants.dart';
+import 'package:ripple_car_frontend/app/utils/functions.dart';
 
 class GaragePage extends GetView<GarageController> {
   const GaragePage({Key? key}) : super(key: key);
@@ -64,57 +65,68 @@ class GaragePage extends GetView<GarageController> {
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Card(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(5),
-                                    child: ClipRRect(
+                                  child: Container(
+                                    decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                            image: AssetImage(
-                                                getCarImage(item.car.image)),
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
+                                      gradient: LinearGradient(
+                                        colors:
+                                            showColorsRarity(item.car.rarity),
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(5),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
                                         child: Container(
-                                          decoration: const BoxDecoration(
-                                            gradient: LinearGradient(
-                                              colors: [
-                                                Colors.transparent,
-                                                Colors.black,
-                                              ],
-                                              begin: Alignment.topCenter,
-                                              end: Alignment.bottomCenter,
-                                              stops: [0.7, 1],
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                              image: AssetImage(
+                                                  getCarImage(item.car.image)),
+                                              fit: BoxFit.cover,
                                             ),
                                           ),
                                           child: Container(
-                                            padding: const EdgeInsets.all(5),
-                                            child: Column(
-                                              children: [
-                                                const Spacer(),
-                                                FittedBox(
-                                                  fit: BoxFit.scaleDown,
-                                                  child: Text(
-                                                    item.car.name,
-                                                    style: dosisRegular()
-                                                        .copyWith(
-                                                            color:
-                                                                Colors.white),
+                                            decoration: const BoxDecoration(
+                                              gradient: LinearGradient(
+                                                colors: [
+                                                  Colors.transparent,
+                                                  Colors.black,
+                                                ],
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.bottomCenter,
+                                                stops: [0.7, 1],
+                                              ),
+                                            ),
+                                            child: Container(
+                                              padding: const EdgeInsets.all(5),
+                                              child: Column(
+                                                children: [
+                                                  const Spacer(),
+                                                  FittedBox(
+                                                    fit: BoxFit.scaleDown,
+                                                    child: Text(
+                                                      item.car.name,
+                                                      style: dosisRegular()
+                                                          .copyWith(
+                                                              color:
+                                                                  Colors.white),
+                                                    ),
                                                   ),
-                                                ),
-                                                const SizedBox(height: 10),
-                                                FittedBox(
-                                                  fit: BoxFit.scaleDown,
-                                                  child: Text(
-                                                    'Nível ${item.level}',
-                                                    style: dosisRegular()
-                                                        .copyWith(
-                                                            color:
-                                                                Colors.white),
-                                                  ),
-                                                )
-                                              ],
+                                                  const SizedBox(height: 10),
+                                                  FittedBox(
+                                                    fit: BoxFit.scaleDown,
+                                                    child: Text(
+                                                      'Nível ${item.level}',
+                                                      style: dosisRegular()
+                                                          .copyWith(
+                                                              color:
+                                                                  Colors.white),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),

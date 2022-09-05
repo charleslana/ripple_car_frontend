@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ripple_car_frontend/app/components/custom_app_bar.dart';
 import 'package:ripple_car_frontend/app/components/loop_animation.dart';
+import 'package:ripple_car_frontend/app/components/side_bar.dart';
 import 'package:ripple_car_frontend/app/modules/home/controllers/home_controller.dart';
 import 'package:ripple_car_frontend/app/modules/home/models/home_model.dart';
 import 'package:ripple_car_frontend/app/routes/app_routes.dart';
@@ -13,6 +14,8 @@ class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: controller.key,
+      drawer: const SideBar(),
       appBar: const CustomAppBar(
         title: 'Início',
         isBack: false,
@@ -129,13 +132,10 @@ class HomePage extends GetView<HomeController> {
                                   tooltip: 'Menu',
                                   heroTag: null,
                                   onPressed: () =>
-                                      Get.toNamed<dynamic>(AppRoutes.garage),
-                                  child: IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                      Icons.menu,
-                                      color: Colors.white,
-                                    ),
+                                      controller.key.currentState!.openDrawer(),
+                                  child: const Icon(
+                                    Icons.menu,
+                                    color: Colors.white,
                                   ),
                                 ),
                               ],
