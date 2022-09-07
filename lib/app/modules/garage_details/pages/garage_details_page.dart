@@ -33,7 +33,7 @@ class GarageDetailsPage extends GetView<GarageDetailsController> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Expanded(
-                          flex: 4,
+                          flex: 5,
                           child: Stack(
                             children: [
                               Container(
@@ -112,6 +112,17 @@ class GarageDetailsPage extends GetView<GarageDetailsController> {
                                 ),
                               ),
                             ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Text(
+                              garageDetails.car.name,
+                              style: poppinsRegular()
+                                  .copyWith(fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ),
                         Expanded(
@@ -277,7 +288,8 @@ class GarageDetailsPage extends GetView<GarageDetailsController> {
             const Divider(),
             _showStatus(
               'Raridade',
-              garageDetails.car.rarity,
+              showStringRarity(garageDetails.car.rarity),
+              showColorRarity(garageDetails.car.rarity),
             ),
             const Divider(),
             _showStatus(
@@ -300,7 +312,8 @@ class GarageDetailsPage extends GetView<GarageDetailsController> {
     );
   }
 
-  Widget _showStatus(String text, String value) => Row(
+  Widget _showStatus(String text, String value, [Color color = Colors.black]) =>
+      Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
@@ -314,6 +327,7 @@ class GarageDetailsPage extends GetView<GarageDetailsController> {
             child: Text(
               value,
               textAlign: TextAlign.end,
+              style: TextStyle(color: color),
             ),
           ),
         ],

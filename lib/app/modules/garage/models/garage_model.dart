@@ -77,6 +77,7 @@ class Car {
     required this.nitro,
     required this.rarity,
     required this.carClass,
+    required this.maxLevel,
   });
 
   factory Car.fromJson(String source) =>
@@ -96,6 +97,7 @@ class Car {
       nitro: map['nitro'] as int,
       rarity: map['rarity'] as String,
       carClass: map['carClass'] as String,
+      maxLevel: map['maxLevel'] as int,
     );
   }
 
@@ -111,6 +113,7 @@ class Car {
   final int nitro;
   final String rarity;
   final String carClass;
+  final int maxLevel;
 
   Car copyWith({
     int? id,
@@ -125,6 +128,7 @@ class Car {
     int? nitro,
     String? rarity,
     String? carClass,
+    int? maxLevel,
   }) {
     return Car(
       id: id ?? this.id,
@@ -139,6 +143,7 @@ class Car {
       nitro: nitro ?? this.nitro,
       rarity: rarity ?? this.rarity,
       carClass: carClass ?? this.carClass,
+      maxLevel: maxLevel ?? this.maxLevel,
     );
   }
 
@@ -156,6 +161,7 @@ class Car {
       'nitro': nitro,
       'rarity': rarity,
       'carClass': carClass,
+      'maxLevel': maxLevel,
     };
   }
 

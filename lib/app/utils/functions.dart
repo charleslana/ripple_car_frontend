@@ -104,10 +104,22 @@ List<Color> showColorsRarity(String rarity) {
         Colors.greenAccent,
         Colors.green.shade300,
       ];
+    case 'COMMON_MORE':
+      return [
+        Colors.green,
+        Colors.orangeAccent.shade200,
+        Colors.green.shade300,
+      ];
     case 'RARE':
       return [
         Colors.blue,
         Colors.blueAccent,
+        Colors.blue.shade300,
+      ];
+    case 'RARE_MORE':
+      return [
+        Colors.blue,
+        Colors.orangeAccent.shade200,
         Colors.blue.shade300,
       ];
     case 'EPIC':
@@ -116,10 +128,22 @@ List<Color> showColorsRarity(String rarity) {
         Colors.deepPurple,
         Colors.purple.shade300,
       ];
+    case 'EPIC_MORE':
+      return [
+        Colors.purple,
+        Colors.orangeAccent.shade200,
+        Colors.purple.shade300,
+      ];
     case 'LEGENDARY':
       return [
         Colors.yellow,
         Colors.orangeAccent,
+        Colors.yellow.shade300,
+      ];
+    case 'LEGENDARY_MORE':
+      return [
+        Colors.yellow,
+        Colors.redAccent.shade200,
         Colors.yellow.shade300,
       ];
     case 'MYTHICAL':
@@ -128,11 +152,91 @@ List<Color> showColorsRarity(String rarity) {
         Colors.deepOrange,
         Colors.red.shade300,
       ];
+    case 'MYTHICAL_MORE':
+      return [
+        Colors.red,
+        Colors.orangeAccent.shade200,
+        Colors.red.shade300,
+      ];
+    case 'ASCENDED':
+      return [
+        Colors.grey,
+        Colors.blueGrey,
+        Colors.grey.shade300,
+      ];
+    case 'ASCENDED_MORE':
+      return [
+        Colors.grey,
+        Colors.black38,
+        Colors.blueGrey.shade300,
+      ];
     default:
       return [
         Colors.black,
         Colors.black,
         Colors.black,
       ];
+  }
+}
+
+Color showColorRarity(String rarity) {
+  switch (rarity) {
+    case 'COMMON':
+      return Colors.green;
+    case 'COMMON_MORE':
+      return Colors.green.shade300;
+    case 'RARE':
+      return Colors.blue;
+    case 'RARE_MORE':
+      return Colors.blue.shade800;
+    case 'EPIC':
+      return Colors.purple;
+    case 'EPIC_MORE':
+      return Colors.deepPurple;
+    case 'LEGENDARY':
+      return Colors.orange;
+    case 'LEGENDARY_MORE':
+      return Colors.deepOrangeAccent;
+    case 'MYTHICAL':
+      return Colors.red;
+    case 'MYTHICAL_MORE':
+      return Colors.deepOrange;
+    case 'ASCENDED':
+      return Colors.grey;
+    case 'ASCENDED_MORE':
+      return Colors.blueGrey;
+    default:
+      return Colors.black;
+  }
+}
+
+String showStringRarity(String rarity) {
+  switch (rarity) {
+    case 'COMMON':
+      return 'Comum';
+    case 'COMMON_MORE':
+      return 'Comum+';
+    case 'RARE':
+      return 'Raro';
+    case 'RARE_MORE':
+      return 'Raro+';
+    case 'EPIC':
+      return 'Épico';
+    case 'EPIC_MORE':
+      return 'Épico+';
+    case 'LEGENDARY':
+      return 'Lendário';
+    case 'LEGENDARY_MORE':
+      return 'Lendário+';
+    case 'MYTHICAL':
+      return 'Mítico';
+    case 'MYTHICAL_MORE':
+      return 'Mítico+';
+    case 'ASCENDED':
+      return 'Ascendido';
+    case 'ASCENDED_MORE':
+      return 'Ascendido+';
+    default:
+      return 'Sem raridade';
   }
 }
